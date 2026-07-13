@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Workspace | bookHomePhysio</title>
+    <style>
+        :root {
+            --teal: #008080;
+            --mint: #e6f7f4;
+            --dark-teal: #005a5a;
+            --text-color: #2c3e50;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fbfb;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        .nav-banner {
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-banner h2 {
+            margin: 0;
+            color: var(--teal);
+            font-size: 20px;
+        }
+        .logout-btn {
+            background: none;
+            border: 1px solid #e5e7eb;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .logout-btn:hover {
+            background-color: #f3f4f6;
+            color: #dc2626;
+        }
+        .main-content {
+            padding: 40px 5%;
+        }
+        .welcome-block {
+            margin-bottom: 32px;
+        }
+        .welcome-block h1 {
+            margin: 0 0 4px 0;
+            font-size: 28px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.02);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            padding: 16px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-pending { background-color: #fef3c7; color: #d97706; }
+        .badge-active { background-color: var(--mint); color: var(--dark-teal); }
+    </style>
+</head>
+<body>
+
+<div class="nav-banner">
+    <h2>bookHomePhysio Dashboard</h2>
+    <button class="logout-btn" onclick="logoutSession()">Secure Log Out</button>
+</div>
+
+<div class="main-content">
+    <div class="welcome-block">
+        <h1 id="welcomeTitle">Loading Profile...</h1>
+        <p style="color: #64748b; margin: 0;">Active Clinical Assignment Queue Management Panel</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ref</th>
+                    <th>Patient Details</th>
+                    <th>Specialization</th>
+                    <th>Schedule Slot</th>
+                    <th>Region Target</th>
+                    <th>Status Flag</th>
+                </tr>
+            </thead>
+            <tbody id="queueTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center; color: #94a3b8; padding: 32px;">Initializing communication pipes...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Immediate pipeline guard: Verify presence of active token session variables
+    if (!localStorage.getItem('bhp_auth_token')) {
+        window.location.href = '/portals.html'; 
+    }
+    
+    const profile = JSON.parse(localStorage.getItem('bhp_user_profile') || '{}');
+    document.getElementById('welcomeTitle').innerText = `Welcome, Dr. ${profile.name || 'Therapist'}`;
+
+    function logoutSession() {
+        localStorage.clear();
+        window.location.href = '/portals.html';
+    }
+</script>
+<script src="js/dashboard-view.js"></script>
+
+</body>
+</html>

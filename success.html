@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Physio Nutra Clinic</title>
+    <style>
+        :root {
+            --teal: #008080;
+            --mint: #e6f7f4;
+            --dark-teal: #005a5a;
+            --text-color: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--mint);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .success-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 128, 128, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background-color: var(--mint);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 24px;
+        }
+        .icon-circle svg {
+            width: 40px;
+            height: 40px;
+            color: var(--teal);
+        }
+        h1 {
+            color: var(--teal);
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 24px;
+        }
+        .ref-box {
+            background-color: #f8fbfb;
+            border: 2px dashed var(--teal);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--dark-teal);
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+        .btn {
+            background-color: var(--teal);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: var(--dark-teal);
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-card">
+    <div class="icon-circle">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+    </div>
+    <h1>Appointment Requested!</h1>
+    <p>Thank you for choosing Physio Nutra Clinic. Your home physiotherapy session request has been registered in our scheduling pipeline.</p>
+    
+    <div class="ref-box" id="displayBookingRef">Loading Reference...</div>
+    
+    <p style="font-size: 14px; color: #777;">A clinical assignment coordinator will verify your slot and connect with you via WhatsApp shortly.</p>
+    
+    <a href="index.html" class="btn">Return Home</a>
+</div>
+
+<script>
+    // Extract the confirmation reference code appended by booking-handler.js
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingRef = urlParams.get('ref') || 'BKN-PENDING';
+    document.getElementById('displayBookingRef').innerText = bookingRef;
+</script>
+
+</body>
+</html>
